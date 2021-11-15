@@ -12,19 +12,15 @@ const colors = [
 const refs = {
   start: document.querySelector('button[data-action="start"]'),
   stop: document.querySelector('button[data-action="stop"]'),
-  isActive: false,
 };
 let intervalId = null;
 
 refs.start.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
-  intervalId = setInterval(() => {
-    if (refs.isActive === true) {
-      refs.start.setAttribute('disabled', 'disabled');
-    }
+  refs.start.setAttribute('disabled', 'disabled');
 
-    refs.isActive = true;
+  intervalId = setInterval(() => {
     const maxColorLength = colors.length - 1;
 
     const randomIntegerFromInterval = (min, max) => {
