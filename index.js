@@ -15,6 +15,10 @@ const refs = {
 };
 let intervalId = null;
 
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 refs.start.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
@@ -22,10 +26,6 @@ function onStartBtnClick() {
 
   intervalId = setInterval(() => {
     const maxColorLength = colors.length - 1;
-
-    const randomIntegerFromInterval = (min, max) => {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    };
 
     document.body.style.backgroundColor =
       colors[randomIntegerFromInterval(0, maxColorLength)];
