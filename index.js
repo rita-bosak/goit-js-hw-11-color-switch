@@ -10,8 +10,8 @@ const colors = [
 ];
 
 const refs = {
-  start: document.querySelector('button[data-action="start"]'),
-  stop: document.querySelector('button[data-action="stop"]'),
+  startBtn: document.querySelector('button[data-action="start"]'),
+  stopBtn: document.querySelector('button[data-action="stop"]'),
 };
 let intervalId = null;
 
@@ -19,22 +19,26 @@ const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-refs.start.addEventListener('click', onStartBtnClick);
+refs.startBtn.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
-  refs.start.setAttribute('disabled', 'disabled');
+  refs.startBtn.disabled = true;
 
   intervalId = setInterval(() => {
-    const maxColorLength = colors.length - 1;
-
-    document.body.style.backgroundColor =
-      colors[randomIntegerFromInterval(0, maxColorLength)];
+    changeBgColor();
   }, 1000);
 }
 
-refs.stop.addEventListener('click', onStopBtnClick);
+refs.stopBtn.addEventListener('click', onStopBtnClick);
 
 function onStopBtnClick() {
   clearInterval(intervalId);
-  refs.start.removeAttribute('disabled');
+  refs.startBtn.disabled = false;
+}
+
+function changeBgColor() {
+  const maxColorLength = colors.length - 1;
+
+  document.body.style.backgroundColor =
+    colors[randomIntegerFromInterval(0, maxColorLength)];
 }
